@@ -96,6 +96,25 @@ app.post("/chat", async (req, res) => {
 });
 
 
+app.post("/logout", async (req, res) => {
+  try {
+    const { userId } = req.body;
+    
+    if (!userId) {
+      return res.status(400).json({ error: "User ID required" });
+    }
+
+    await Chat.deleteOne({ userId }); // Delete chat history from MongoDB
+
+    res.json({ message: "Chat history deleted, user logged out." });
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
