@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const path = require("path");
 const { GoogleGenerativeAI } = require("@google/generative-ai"); 
 
 const app = express();
@@ -45,7 +44,7 @@ app.post("/chat", async (req, res) => {
 
     try {
       // Initialize Gemini chat
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       
       // Convert chat history to Gemini format
       const geminiMessages = chat.messages.map(msg => ({
