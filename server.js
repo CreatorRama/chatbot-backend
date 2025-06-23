@@ -56,7 +56,7 @@ app.post("/chat", async (req, res) => {
       const chatSession = model.startChat({
         history: geminiMessages.slice(0, -1), // All messages except the latest
         generationConfig: {
-          maxOutputTokens: 1000,
+          maxOutputTokens: 2000,
         },
       });
       
